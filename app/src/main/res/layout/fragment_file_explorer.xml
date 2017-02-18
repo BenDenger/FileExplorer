@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/frame"
     android:layout_height="match_parent"
     tools:context="com.example.ben.fileexplorer.FileExplorerFragment"
     android:background="@color/colorPrimaryDark">
@@ -9,7 +10,7 @@
         android:id="@+id/tvPath"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="654621" />
+        android:text="" />
 
     <ListView
         android:id="@+id/lvFiles"
