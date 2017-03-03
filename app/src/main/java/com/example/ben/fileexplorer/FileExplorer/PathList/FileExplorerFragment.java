@@ -1,4 +1,4 @@
-package com.example.ben.fileexplorer.PictureExplorer;
+package com.example.ben.fileexplorer.FileExplorer.PathList;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

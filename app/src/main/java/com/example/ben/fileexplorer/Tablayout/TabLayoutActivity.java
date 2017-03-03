@@ -8,7 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.ben.fileexplorer.Permissions;
-import com.example.ben.fileexplorer.PictureExplorer.FileExplorerFragment;
+import com.example.ben.fileexplorer.FileExplorer.PathList.FileExplorerFragment;
 import com.example.ben.fileexplorer.R;
 
 import java.util.ArrayList;

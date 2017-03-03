@@ -1,6 +1,6 @@
-package com.example.ben.fileexplorer.PictureExplorer;
+package com.example.ben.fileexplorer.FileExplorer;
 
-import android.util.Log;
+import com.example.ben.fileexplorer.FileExplorer.FileGridView.SelectedFile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public class DirectoryIterator {
-   private List<String> values;
+   private List<SelectedFile> values;
 
     public DirectoryIterator()
     {
@@ -43,7 +43,7 @@ public class DirectoryIterator {
         }
     };
 
-    public List<String> getPaths(File root, PicOrVideo picOrVideo) {
+    public List<SelectedFile> getPaths(File root, PicOrVideo picOrVideo) {
         File listFile[] = root.listFiles();
         if (listFile != null && listFile.length > 0) {
             for (File f : listFile) {
@@ -51,21 +51,25 @@ public class DirectoryIterator {
                     getPaths(f, picOrVideo);
                 } else if (picOrVideo.containsFile(f)) {
                     String tmp = f.getPath().substring(0, f.getPath().lastIndexOf('/'));
-                    if (!values.contains(tmp)) {
-                        values.add(tmp);
+                    SelectedFile file = new SelectedFile();
+                    file.setPath(tmp);
+                    if (!values.contains(file)) {
+                        values.add(file);
                     }
                 }
             }
         }
         return values;
     }
-    public List<String> getFiles(String directory,PicOrVideo picOrVideo) {
+    public List<SelectedFile> getFiles(String directory,PicOrVideo picOrVideo) {
         File file = new File(directory);
         File listFile[] = file.listFiles();
         for (File f : listFile) {
             if (picOrVideo.containsFile(f)) {
-                if (!values.contains(f.getPath())) {
-                    values.add(f.getPath());
+                SelectedFile selectedFile = new SelectedFile();
+                selectedFile .setPath(f.getPath());
+                if (!values.contains(selectedFile)) {
+                    values.add(selectedFile);
                 }
             }
         }

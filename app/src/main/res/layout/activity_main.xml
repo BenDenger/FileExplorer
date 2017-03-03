@@ -8,11 +8,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ben.fileexplorer.MainActivity">
+    tools:context="com.example.ben.fileexplorer.Main.MainActivity">
 
     <Button
+        android:id="@+id/btnSelectFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnSelectFile"
-        android:text="Datei auswählen"/>
+        android:text="Datei auswählen" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/picture_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btnSelectFile" />
+
 </RelativeLayout>

@@ -1,14 +1,12 @@
-package com.example.ben.fileexplorer.PictureExplorer.GridView;
+package com.example.ben.fileexplorer.FileExplorer.FileGridView;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -22,12 +20,12 @@ import java.util.List;
  * Created by benjamindenger on 19.02.17.
  */
 
-public class GridViewAdapter extends BaseAdapter {
+public class FileGridViewAdapter extends BaseAdapter {
 
     private Context context;
-    private List<String> files;
+    private List<SelectedFile> files;
 private String filetype;
-    public GridViewAdapter(Context c, List<String> objects, String fileType) {
+    public FileGridViewAdapter(Context c, List<SelectedFile> objects, String fileType) {
         files = objects;
         context = c;
         filetype = fileType;
@@ -39,7 +37,7 @@ private String filetype;
     }
 
     @Override
-    public String getItem(int position) {
+    public SelectedFile getItem(int position) {
         return files.get(position);
     }
 
@@ -55,13 +53,18 @@ private String filetype;
         if (convertView == null) {
             imageView = new ImageView(context);
             imageView.setLayoutParams(new GridView.LayoutParams(480, 480));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            imageView.setPadding(8, 8, 8, 8);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;
         }
-        String path = getItem(position);
-        Log.e( "getView: ",path );
+
+        if(files.get(position).isSelected()) {
+            imageView.setBackgroundColor(Color.BLUE);
+        }else{
+            imageView.setBackgroundColor(Color.WHITE);
+        }
+        String path = getItem(position).getPath();
         if(filetype.equals("Pictures")) {
             Picasso.with(context)
                     .load(new File(path))

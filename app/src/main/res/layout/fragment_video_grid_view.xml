@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ben.fileexplorer.PictureExplorer.GridView.GridViewFragment">
+    tools:context="com.example.ben.fileexplorer.FileExplorer.FileGridView.FileGridViewFragment">
 
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    <GridView
         android:id="@+id/gridview_video"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
