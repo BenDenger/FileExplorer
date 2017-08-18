@@ -26,9 +26,11 @@ public class FileExplorerFrame extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        DirectoryIterator iterator;
+        
         super.onViewCreated(view, savedInstanceState);
         lv = (ListView) view.findViewById(R.id.lvFiles);
-        DirectoryIterator iterator =new DirectoryIterator();
+        iterator = new DirectoryIterator();
 
         switch (getArguments().getString("filetype")) {
             case "Pictures": {
@@ -42,18 +44,21 @@ public class FileExplorerFrame extends Fragment {
                 break;
             }
         }
+        
         initListView();
     }
 
     private void initListView() {
-        //lv = (ListView) getActivity().findViewById(R.id.lvFiles);
         lv.setAdapter(new PathListViewAdapter(getActivity(), R.layout.file_list_row, values));
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (new File(values.get(position).getPath()).isDirectory()) {
-                    FileGridViewFragment fragment = new FileGridViewFragment();
-                    Bundle b = new Bundle();
+                    FileGridViewFragment fragment;
+                    Bundle b;
+                    
+                    fragment = new FileGridViewFragment();
+                    b = new Bundle();
                     b.putString("dir", values.get(position).getPath());
                     b.putString("filetype",getArguments().getString("filetype"));
                     fragment.setArguments(b);
