@@ -17,7 +17,6 @@ import java.util.List;
  */
 
 public class PathListViewAdapter extends ArrayAdapter {
-
     private Context context;
     private List<SelectedFile> files;
 
@@ -30,10 +29,10 @@ public class PathListViewAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View row = convertView;
+        View row = convertView; // y tho? You could aswell just work with "convertView"
         PathViewHolder viewholder = null;
+        
         if (row == null && context != null) {
-
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.file_list_row, parent, false);
             viewholder = new PathViewHolder(row);
@@ -41,6 +40,7 @@ public class PathListViewAdapter extends ArrayAdapter {
         } else {
             viewholder = (PathViewHolder) row.getTag();
         }
+        
         viewholder.getPathname().setText(files.get(position).getPath());
         return row;
     }
