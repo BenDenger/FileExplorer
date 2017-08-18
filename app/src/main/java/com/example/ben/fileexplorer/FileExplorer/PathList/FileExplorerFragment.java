@@ -17,25 +17,33 @@ public class FileExplorerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (getArguments().getString("filetype").equals("Pictures"))
+        if (getArguments().getString("filetype").equals("Pictures")) {
             myView = inflater.inflate(R.layout.fragment_picture_explorer, container, false);
-        else
+        } else {
             myView = inflater.inflate(R.layout.fragment_video_explorer, container, false);
+        }
+        
         return myView;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        String filtetype;
+        FileExplorerFrame fragment;
+        Bundle b;
+        
         super.onViewCreated(view, savedInstanceState);
-        String filetype = getArguments().getString("filetype");
-        FileExplorerFrame fragment = new FileExplorerFrame();
-        Bundle b = new Bundle();
-        b.putString("filetype",filetype);
+        fileType = getArguments().getString("filetype");
+        fragment = new FileExplorerFrame();
+        b = new Bundle();
+        b.putString("filetype", fileType);
         fragment.setArguments(b);
-        if(filetype.equals("Pictures"))
+        
+        if(filetype.equals("Pictures")) {
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_pictures, fragment).commit();
-        else
+        } else {
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_video, fragment).commit();
+        }
     }
 
 }
