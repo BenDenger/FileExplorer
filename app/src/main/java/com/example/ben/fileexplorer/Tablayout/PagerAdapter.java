@@ -13,24 +13,24 @@ import java.util.List;
  */
 
 public class PagerAdapter extends FragmentPagerAdapter {
-    private Context context;
-    private int count;
-    public List<Fragment> fragmentList;
+    private Context _context;
+    private int _count;
+    public List<Fragment> _fragmentList;
 
-    public PagerAdapter(FragmentManager fm, int Count, Context c, List<Fragment> fragments) {
+    public PagerAdapter(FragmentManager fm, int count, Context context, List<Fragment> fragments) {
         super(fm);
-        count = Count;
-        context = c;
-        fragmentList = fragments;
+        _count = count;
+        _context = context;
+        _fragmentList = fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return fragmentList.get(position);
+        return _fragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return count;
+        return _count;
     }
 }
