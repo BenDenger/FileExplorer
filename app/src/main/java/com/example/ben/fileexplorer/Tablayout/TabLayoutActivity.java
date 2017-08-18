@@ -29,11 +29,13 @@ public class TabLayoutActivity extends AppCompatActivity {
         initTabLayout();
     }
 
-
     private void initTabLayout() {
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.TabLayout);
-        addtabs(tabLayout);
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), this, getTabs());
+        TabLayout tabLayout;
+        PagerAdapter adapter;
+        
+        tabLayout = (TabLayout) findViewById(R.id.TabLayout);
+        addTabs(tabLayout);
+        adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), this, getTabs());
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -55,8 +57,8 @@ public class TabLayoutActivity extends AppCompatActivity {
         });
     }
 
-    private void addtabs(TabLayout tabLayout) {
-        tabLayout.addTab(tabLayout.newTab().setText("Bilder"));
+    private void addTabs(TabLayout tabLayout) {
+        tabLayout.addTab(tabLayout.newTab().setText("Bilder")); // just beautiful! Everyone loves hard coded, un-localized strings!
         tabLayout.addTab(tabLayout.newTab().setText("Videos"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
     }
@@ -65,6 +67,7 @@ public class TabLayoutActivity extends AppCompatActivity {
     public void onBackPressed() {
         fragmentManager = getSupportFragmentManager();
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        
         if (fragmentManager.getBackStackEntryCount() > 0) {
             if (viewPager.getCurrentItem() == 0) {
                 fragmentManager.popBackStack("Pictures", FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -77,18 +80,26 @@ public class TabLayoutActivity extends AppCompatActivity {
     }
 
     private List<Fragment> getTabs() {
-        List<Fragment> fragments = new ArrayList<>();
-        FileExplorerFragment pictures = new FileExplorerFragment();
-        Bundle picBundle = new Bundle();
+        List<Fragment> fragments;
+        FileExplorerFragment pictures;
+        FileExplorerFragment videos;
+        Bundle picBundle;
+        Bundle vidBundle;
+        
+        fragments = new ArrayList<>();
+        pictures = new FileExplorerFragment();
+        picBundle = new Bundle();
         picBundle.putString("filetype", "Pictures");
         pictures.setArguments(picBundle);
         fragments.add(pictures);
 
-        FileExplorerFragment videos = new FileExplorerFragment();
-        Bundle vidBundle = new Bundle();
+        videos = new FileExplorerFragment();
+        vidBundle = new Bundle();
+        
         vidBundle.putString("filetype", "Videos");
         videos.setArguments(vidBundle);
         fragments.add(videos);
+        
         return fragments;
     }
 }
