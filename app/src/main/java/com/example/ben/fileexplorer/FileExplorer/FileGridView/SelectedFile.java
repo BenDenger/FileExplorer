@@ -7,8 +7,8 @@ package com.example.ben.fileexplorer.FileExplorer.FileGridView;
 public class SelectedFile {
     private String path;
     private boolean selected;
-    public SelectedFile()
-    {
+    
+    public SelectedFile() {
         selected = false;
     }
 
