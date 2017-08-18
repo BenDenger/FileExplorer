@@ -16,20 +16,22 @@ import java.io.File;
  */
 
 public class PictureViewHolder extends RecyclerView.ViewHolder{
-    private ImageView imageView;
-    private String filetype;
-    public PictureViewHolder(View v,String Filetype) {
+    private ImageView _imageView;
+    private String _fileType;
+    
+    public PictureViewHolder(View v, String fileType) {
         super(v);
         imageView = (ImageView) v.findViewById(R.id.image_preview);
-        filetype = Filetype;
+        _fileType = fileType;
     }
-    public void bindPhoto(String Path) {
-        if (filetype.equals("Pictures")) {
-            Picasso.with(imageView.getContext())
-                    .load(new File(Path))
-                    .fit().into(imageView);
+    
+    public void bindPhoto(String path) {
+        if (_fileType.equals("Pictures")) {
+            Picasso.with(_imageView.getContext())
+                    .load(new File(path))
+                    .fit().into(_imageView);
         } else {
-            imageView.setImageBitmap(ThumbnailUtils.createVideoThumbnail(Path, MediaStore.Video.Thumbnails.MINI_KIND));
+            _imageView.setImageBitmap(ThumbnailUtils.createVideoThumbnail(path, MediaStore.Video.Thumbnails.MINI_KIND));
         }
     }
 }
