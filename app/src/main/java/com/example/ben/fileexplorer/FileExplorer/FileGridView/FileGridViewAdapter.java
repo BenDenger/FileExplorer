@@ -24,7 +24,8 @@ public class FileGridViewAdapter extends BaseAdapter {
 
     private Context context;
     private List<SelectedFile> files;
-private String filetype;
+    private String filetype;
+    
     public FileGridViewAdapter(Context c, List<SelectedFile> objects, String fileType) {
         files = objects;
         context = c;
@@ -50,26 +51,28 @@ private String filetype;
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
+        
         if (convertView == null) {
             imageView = new ImageView(context);
             imageView.setLayoutParams(new GridView.LayoutParams(480, 480));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(8, 8, 8, 8);
+            imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;
         }
 
-        if(files.get(position).isSelected()) {
+        if (files.get(position).isSelected()) {
             imageView.setBackgroundColor(Color.BLUE);
-        }else{
+        } else {
             imageView.setBackgroundColor(Color.WHITE);
         }
+        
         String path = getItem(position).getPath();
-        if(filetype.equals("Pictures")) {
+        if (filetype.equals("Pictures")) {
             Picasso.with(context)
-                    .load(new File(path))
-                    .fit().into(imageView);
-        }else{
+                   .load(new File(path))
+                   .fit().into(imageView);
+        } else {
            imageView.setImageBitmap(ThumbnailUtils.createVideoThumbnail(path, MediaStore.Video.Thumbnails.MINI_KIND));
         }
         return imageView;
